@@ -1,0 +1,17 @@
+{
+  // Found by string "BuildCacheSubscribed(CEconItem)"
+  "CreateCEconItem": {
+    "windows": "48 83 EC ? B9 ? ? ? ? E8 ? ? ? ? 48 85 C0 74 ? 48 8D 0D ? ? ? ? C7 40 ? ? ? ? ? 48 89 08",
+    "linux": ""
+  },
+  // Found near the string "CCSInventoryManager"
+  "CCSInventoryManager_xref": {
+    "windows": "48 8B 05 ? ? ? ? 4C 8B 80",
+    "linux": ""
+  },
+  // Has CEconItem vtable xref
+  "GetEconItemByItemID": {
+    "windows": "48 89 74 24 ? 57 48 83 EC ? 48 8B FA 48 8B F1 48 85 D2 75 ? 33 C0",
+    "linux": ""
+  }
+}

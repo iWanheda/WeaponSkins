@@ -1,0 +1,38 @@
+{
+  "GCSDK::CGCClientSharedObjectCache::AddObject": {
+    "windows": 2,
+    "linux": 2
+  },
+  "GCSDK::CGCClientSharedObjectCache::RemoveObject": {
+    "windows": 4,
+    "linux": 4
+  },
+  "GCSDK::CGCClientSharedObjectCache::m_Owner": {
+    "windows": 40,
+    "linux": 40
+  },
+  "CPlayerInventory::SOUpdated": {
+    "windows": 1,
+    "linux": 1
+  },
+  "CPlayerInventory::SODestroyed": {
+    "windows": 2,
+    "linux": 2
+  },
+  "CPlayerInventory::SoCacheSubscribed": {
+    "windows": 3,
+    "linux": 3
+  },
+  "CCSPlayerInventory::m_Loadouts": {
+    "windows": 144,
+    "linux": 144
+  },
+  "CCSPlayerInventory::m_pSOCache": {
+    "windows": 104,
+    "linux": 104
+  },
+  "CCSInventoryManager::m_DefaultLoadouts": {
+    "windows": 112,
+    "linux": 112
+  }
+}
