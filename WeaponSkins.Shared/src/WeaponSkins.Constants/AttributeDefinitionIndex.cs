@@ -40,6 +40,8 @@ public enum AttributeDefinitionIndex : ushort
     STICKER_SLOT_5_SCALE = 135,
     STICKER_SLOT_5_ROTATION = 136,
 
+    MUSIC_ID = 166, // int as float
+
 
     STICKER_SLOT_0_OFFSET_X = 278,
     STICKER_SLOT_0_OFFSET_Y = 279,

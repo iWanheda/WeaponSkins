@@ -42,5 +42,9 @@
   "CCSInventoryManager::m_DefaultLoadouts": {
     "windows": 112,
     "linux": 112
+  },
+  "CAttribute_String::New": {
+    "windows": 2,
+    "linux": 3
   }
 }

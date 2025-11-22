@@ -1,3 +1,5 @@
+using System.IO.MemoryMappedFiles;
+
 using Microsoft.Extensions.DependencyInjection;
 
 using SwiftlyS2.Shared.Plugins;
@@ -6,6 +8,8 @@ using SwiftlyS2.Shared.SchemaDefinitions;
 using SwiftlyS2.Shared.Schemas;
 using SwiftlyS2.Shared.Players;
 using SwiftlyS2.Shared.Commands;
+
+using ValveKeyValue;
 
 using WeaponSkins.Shared;
 
@@ -25,26 +29,28 @@ public partial class WeaponSkins : BasePlugin
     public void TestCommand(ICommandContext args)
     {
         var api = _provider.GetRequiredService<WeaponSkinAPI>();
-        
-        api.UpdateWeaponSkins([new WeaponSkinData
-        {
-            SteamID = 76561199171006920,
-            Team = Team.T,
-            DefinitionIndex = 4,
-            Paintkit = 801,
-            PaintkitSeed = 1,
-            PaintkitWear = 1f,
-            Sticker2 = new()
+
+        api.UpdateWeaponSkins([
+            new WeaponSkinData
             {
-                Id = 1877,
-                Wear = 0.1f,
-                Scale = 1.0f,
-                Rotation = 0.0f,
-                OffsetX = 0.01f,
-                OffsetY = 0.01f,
-                Schema = 3
+                SteamID = 76561199171006920,
+                Team = Team.T,
+                DefinitionIndex = 4,
+                Paintkit = 801,
+                PaintkitSeed = 1,
+                PaintkitWear = 1f,
+                Sticker2 = new()
+                {
+                    Id = 1877,
+                    Wear = 0.1f,
+                    Scale = 1.0f,
+                    Rotation = 0.0f,
+                    OffsetX = 0.01f,
+                    OffsetY = 0.01f,
+                    Schema = 3
+                }
             }
-        }]);
+        ]);
     }
 
     public override void Load(bool hotReload)
@@ -56,6 +62,7 @@ public partial class WeaponSkins : BasePlugin
             .AddInventoryService()
             .AddPlayerService()
             .AddApi()
+            .AddEconParserService()
             .BuildServiceProvider();
 
         _provider
@@ -63,7 +70,8 @@ public partial class WeaponSkins : BasePlugin
             .UseNativeService()
             .UseInventoryService()
             .UsePlayerService()
-            .UseApi();
+            .UseApi()
+            .UseEconParserService();
 
         var dataService = _provider.GetRequiredService<DataService>();
         dataService.KnifeDataService.StoreKnife(new KnifeSkinData
@@ -95,6 +103,7 @@ public partial class WeaponSkins : BasePlugin
                 Schema = 1
             }
         });
+
     }
 
     public override void Unload()

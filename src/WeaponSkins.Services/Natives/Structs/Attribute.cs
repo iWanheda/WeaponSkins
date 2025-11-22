@@ -12,4 +12,6 @@ public struct Attribute
     [FieldOffset(8)] public float FloatData;
 
     [FieldOffset(8)] public int IntData;
+
+    [FieldOffset(8)] public nint PtrData;
 }

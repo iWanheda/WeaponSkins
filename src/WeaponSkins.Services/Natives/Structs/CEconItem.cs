@@ -146,6 +146,8 @@ public class CEconItem : INativeHandle
             Console.WriteLine("Apply: Setting paintkit wear");
             customData.SetPaintkitWear(data.PaintkitWear);
 
+            customData.SetCustomName("123");
+
             if (data.Sticker0 != null)
             {
                 customData.SetSticker0(data.Sticker0.Id, data.Sticker0.Wear, data.Sticker0.Scale,

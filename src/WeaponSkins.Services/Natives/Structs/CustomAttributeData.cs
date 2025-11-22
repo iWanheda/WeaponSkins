@@ -95,6 +95,16 @@ public class CustomAttributeData : INativeHandle
         });
     }
 
+    public void SetCustomName(string name)
+    {
+        var str = StaticNativeService.Service.CreateAttributeString();
+        str.Value = name;
+        UpdateAttribute(new Attribute
+        {
+            AttributeDefinitionIndex = AttributeDefinitionIndex.CUSTOM_NAME_ATTR, PtrData = str.Address 
+        });
+    }
+
     public void SetSticker0(int id,
         float wear,
         float scale,
@@ -348,6 +358,14 @@ public class CustomAttributeData : INativeHandle
         UpdateAttribute(new Attribute
         {
             AttributeDefinitionIndex = AttributeDefinitionIndex.KEYCHAIN_SLOT_0_SEED, IntData = seed
+        });
+    }
+
+    public void SetMusicId(int musicId)
+    {
+        UpdateAttribute(new Attribute
+        {
+            AttributeDefinitionIndex = AttributeDefinitionIndex.MUSIC_ID, IntData = musicId
         });
     }
 }

@@ -1,10 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 
 using Microsoft.Extensions.Logging;
 
 using SwiftlyS2.Shared;
 using SwiftlyS2.Shared.Memory;
+using SwiftlyS2.Shared.NetMessages;
 using SwiftlyS2.Shared.Players;
+using SwiftlyS2.Shared.ProtobufDefinitions;
 using SwiftlyS2.Shared.SchemaDefinitions;
 
 namespace WeaponSkins;
@@ -44,6 +47,9 @@ public class NativeService
     public delegate nint GetEconItemByItemIDDelegate(nint pInventory,
         ulong itemid);
 
+    public delegate nint CAttribute_String_NewDelegate(nint pAttributeString,
+        nint pArena);
+
     public required IUnmanagedFunction<CreateCEconItemDelegate> CreateCEconItem { get; init; }
     public required IUnmanagedFunction<AddObjectDelegate> SOCache_AddObject { get; init; }
     public required IUnmanagedFunction<RemoveObjectDelegate> SOCache_RemoveObject { get; init; }
@@ -52,6 +58,7 @@ public class NativeService
     public required IUnmanagedFunction<SODestroyedDelegate> CPlayerInventory_SODestroyed { get; init; }
     public required IUnmanagedFunction<SOCacheSubscribedDelegate> CPlayerInventory_SOCacheSubscribed { get; init; }
     public required IUnmanagedFunction<GetEconItemByItemIDDelegate> GetEconItemByItemID { get; init; }
+    public required IUnmanagedFunction<CAttribute_String_NewDelegate> CAttribute_String_New { get; init; }
 
     public required int CCSPlayerInventory_LoadoutsOffset { get; init; }
     public required int CCSInventoryManager_m_DefaultLoadoutsOffset { get; init; }
@@ -103,6 +110,12 @@ public class NativeService
             Core.GameData.GetOffset("CPlayerInventory::SOCacheSubscribed")
         );
 
+        var stringVtable = Core.Memory.GetVTableAddress("server", "CAttribute_String")!.Value;
+        CAttribute_String_New = Core.Memory.GetUnmanagedFunctionByVTable<CAttribute_String_NewDelegate>(
+            stringVtable,
+            Core.GameData.GetOffset("CAttribute_String::New")
+        );
+
         CreateCEconItem = Core.Memory.GetUnmanagedFunctionByAddress<CreateCEconItemDelegate>(
             Core.GameData.GetSignature("CreateCEconItem")
         );
@@ -143,10 +156,20 @@ public class NativeService
                 };
             }
         });
+
+        StaticNativeService.Service = this;
     }
 
     public CEconItem CreateCEconItemInstance()
     {
         return new CEconItem(CreateCEconItem.Call());
+    }
+
+    public CAttribute_String CreateAttributeString()
+    {
+        // TODO: Use helper 
+
+        var ret = CAttribute_String_New.Call(0, 0);
+        return Helper.AsProtobuf<CAttribute_String>(ret, false);
     }
 }
