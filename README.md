@@ -6,23 +6,10 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build Status">
-  <img src="https://img.shields.io/github/downloads/samyyc/WeaponSkins/total" alt="Downloads">
-  <img src="https://img.shields.io/github/stars/samyyc/WeaponSkins?style=flat&logo=github" alt="Stars">
-  <img src="https://img.shields.io/github/license/samyyc/WeaponSkins" alt="License">
+  <img src="https://img.shields.io/github/downloads/samyycX/WeaponSkins/total" alt="Downloads">
+  <img src="https://img.shields.io/github/stars/samyycX/WeaponSkins?style=flat&logo=github" alt="Stars">
+  <img src="https://img.shields.io/github/license/samyycX/WeaponSkins" alt="License">
 </p>
-
-## Getting Started (delete me)
-
-1. **Edit `PluginMetadata` Attribute**  
-   - Set your plugin's `Id`, `Name`, `Version`, `Author` and `Description`.
-2. **Edit `WeaponSkins.csproj`**  
-   - Set the `<AssemblyName>` property to match your plugin's main class name.
-   - Add any additional dependencies as needed.
-3. **Implement your plugin logic** in C#.
-   - Place your main plugin class in the root of the project.
-   - Use the SwiftlyS2 managed API to interact with the game and core.
-4. **Add resources**  
-   - Place any required files in the `gamedata`, `templates`, or `translations` folders as needed.
 
 ## Building
 

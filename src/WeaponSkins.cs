@@ -14,7 +14,7 @@ using WeaponSkins.Shared;
 
 namespace WeaponSkins;
 
-[PluginMetadata(Id = "WeaponSkins", Version = "0.0.1", Name = "WeaponSkins", Author = "samyyc",
+[PluginMetadata(Id = "WeaponSkins", Version = "0.0.2", Name = "WeaponSkins", Author = "samyyc",
     Description = "No description.")]
 public partial class WeaponSkins : BasePlugin
 {

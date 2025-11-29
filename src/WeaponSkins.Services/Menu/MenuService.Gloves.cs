@@ -60,6 +60,7 @@ public partial class MenuService
                 {
                     Api.UpdateGloveSkin(args.Player.SteamID, args.Player.Controller.Team, skin =>
                     {
+                        skin.DefinitionIndex = (ushort)item.Index;
                         skin.Paintkit = paintkit.Index;
                     }, true);
 
