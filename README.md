@@ -18,6 +18,9 @@
 - Long-term stattrak tracking
 - Player-based skin name localization
 - Completely game-based econ data dumping (no network required)
+
+## Showcase
+[Youtube](https://youtu.be/MRa8JIRLysE)
   
 ## Building
 
