@@ -13,17 +13,17 @@ public class WeaponSkinAPI : IWeaponSkinAPI
     private InventoryUpdateService InventoryUpdateService { get; init; }
     private InventoryService InventoryService { get; init; }
     private DataService DataService { get; init; }
-    private DatabaseService DatabaseService { get; init; }
+    private StorageService StorageService { get; init; }
 
     public WeaponSkinAPI(InventoryUpdateService inventoryUpdateService,
         InventoryService inventoryService,
         DataService dataService,
-        DatabaseService databaseService)
+        StorageService storageService)
     {
         InventoryUpdateService = inventoryUpdateService;
         InventoryService = inventoryService;
         DataService = dataService;
-        DatabaseService = databaseService;
+        StorageService = storageService;
     }
 
     public void SetWeaponSkins(IEnumerable<WeaponSkinData> skins,
@@ -32,7 +32,7 @@ public class WeaponSkinAPI : IWeaponSkinAPI
         InventoryUpdateService.UpdateWeaponSkins(skins);
         if (permanent)
         {
-            var _ = Task.Run(async () => await DatabaseService.StoreSkins(skins));
+            var _ = Task.Run(async () => await StorageService.Get().StoreSkinsAsync(skins));
         }
     }
 
@@ -42,7 +42,7 @@ public class WeaponSkinAPI : IWeaponSkinAPI
         InventoryUpdateService.UpdateKnifeSkins(knives);
         if (permanent)
         {
-            var _ = Task.Run(async () => await DatabaseService.StoreKnifes(knives));
+            var _ = Task.Run(async () => await StorageService.Get().StoreKnifesAsync(knives));
         }
     }
 
@@ -52,7 +52,7 @@ public class WeaponSkinAPI : IWeaponSkinAPI
         InventoryUpdateService.UpdateGloveSkins(gloves);
         if (permanent)
         {
-            var _ = Task.Run(async () => await DatabaseService.StoreGloves(gloves));
+            var _ = Task.Run(async () => await StorageService.Get().StoreGlovesAsync(gloves));
         }
     }
 
@@ -161,7 +161,7 @@ public class WeaponSkinAPI : IWeaponSkinAPI
         InventoryUpdateService.ResetWeaponSkin(steamid, team, definitionIndex);
         if (permanent)
         {
-            var _ = Task.Run(async () => await DatabaseService.RemoveSkin(steamid, team, definitionIndex));
+            var _ = Task.Run(async () => await StorageService.Get().RemoveSkinAsync(steamid, team, definitionIndex));
         }
     }
 
@@ -173,7 +173,7 @@ public class WeaponSkinAPI : IWeaponSkinAPI
         InventoryUpdateService.ResetKnifeSkin(steamid, team);
         if (permanent)
         {
-            var _ = Task.Run(async () => await DatabaseService.RemoveKnife(steamid, team));
+            var _ = Task.Run(async () => await StorageService.Get().RemoveKnifeAsync(steamid, team));
         }
     }
 
@@ -184,7 +184,12 @@ public class WeaponSkinAPI : IWeaponSkinAPI
         InventoryUpdateService.ResetGloveSkin(steamid, team);
         if (permanent)
         {
-            var _ = Task.Run(async () => await DatabaseService.RemoveGlove(steamid, team));
+            var _ = Task.Run(async () => await StorageService.Get().RemoveGloveAsync(steamid, team));
         }
+    }
+
+    public void SetExternalStorageProvider(IStorageProvider provider)
+    {
+        StorageService.Set(provider);
     }
 }
