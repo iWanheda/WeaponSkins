@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://pan.samyyc.dev/s/VYmMXE" />
-  <h2><strong>WeaponSkins (WIP)</strong></h2>
-  <h3>This plugin is under active development and will be released soon.</h3>
+  <h2><strong>WeaponSkins (Beta)</strong></h2>
+  <h3>A powerful swiftlys2 plugin to change player's weapon skins, knifes and gloves.</h3>
 </div>
 
 <p align="center">
@@ -11,6 +11,12 @@
   <img src="https://img.shields.io/github/license/samyycX/WeaponSkins" alt="License">
 </p>
 
+## Features
+- MySQL & sqlite database support
+- Fully functioning in-game skin menu
+- Compatible with CounterStrikeSharp WeaponPaints database
+- Long-term stattrak tracking
+  
 ## Building
 
 - Open the project in your preferred .NET IDE (e.g., Visual Studio, Rider, VS Code).
