@@ -16,6 +16,7 @@
 - Fully functioning in-game skin menu
 - Compatible with CounterStrikeSharp WeaponPaints database
 - Long-term stattrak tracking
+- Player-based skin name localization
   
 ## Building
 
